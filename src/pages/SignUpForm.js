@@ -30,8 +30,9 @@ class SignUpForm extends Component {
       e.preventDefault();
       console.log(JSON.stringify(this.state));
       const url = "https://quantified-self1811.herokuapp.com/api/v1/users";
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
       if (this.state.password=== this.state.password_confirmation) {
-        fetch(url,
+        fetch(proxyurl + url,
       {
           headers: {
             'Accept': 'application/json',
