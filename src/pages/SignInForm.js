@@ -25,10 +25,27 @@ class SignInForm extends Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
-
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
+      e.preventDefault();
+      console.log(JSON.stringify(this.state));
+      const url = "https://quantified-self1811.herokuapp.com/api/v1/sessions";
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        fetch(proxyurl + url,
+      {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify(this.state)
+      })
+      .then(response => response.json())
+      .then(result=> {
+        if (result.success) {
+          console.log(result.success)
+        } else {
+          alert('Invalid Credentials')
+        }
+      })
     }
 
     render() {

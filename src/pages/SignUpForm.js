@@ -42,9 +42,17 @@ class SignUpForm extends Component {
           body: JSON.stringify(this.state)
       })
       .then(response => response.json())
-      .then(result => console.log(result.body))
+      .then(result=> {
+        if (result.success) {
+          console.log(result.success)
+        }else {
+          alert(result.error)
+        }
+      })
+      .then(result => console.log(result))
 
       }else {
+        alert("Passwords Do Not Match")
       }
     }
 
