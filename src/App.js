@@ -1,32 +1,61 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, Link, NavLink, Redirect} from 'react-router-dom';
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
+import Users from './pages/users';
 
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: false
+    }
+    this.loggedIn = this.loggedIn.bind(this);
+    this.loggedOut = this.loggedOut.bind(this);
+  }
+
+  loggedIn(){
+    this.setState({
+      loggedIn: true
+    })
+  }
+
+  loggedOut(){
+    this.setState({
+      loggedIn: false
+    })
+  }
+
   render() {
     return (
       <Router basename="/react-auth-ui/">
         <div className="App">
-          <div className="App__Aside"> <center><h1>Calorie Tracker</h1></center></div>
           <div className="App__Form">
             <div className="PageSwitcher">
-                <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-                <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+                {
+                  this.state.loggedIn
+                  ? <NavLink to="/" onClick={this.loggedOut} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Log Out</NavLink>
+
+                  : <><NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink> <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink></>
+                }
               </div>
 
-              <div className="FormTitle">
-                  <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-              </div>
-
+              <Switch>
               <Route exact path="/" component={SignUpForm}>
               </Route>
-              <Route path="/sign-in" component={SignInForm}>
-              </Route>
-          </div>
+              <Route
+                path='/sign-in'
+                render={(props) => <SignInForm {...props} loggedIn={this.loggedIn} />}
+              />
 
+              <Route
+                path='/users'
+                render={(props) => <Users {...props}/>}
+              />
+              </Switch>
+          </div>
         </div>
       </Router>
     );
