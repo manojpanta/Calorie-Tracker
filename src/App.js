@@ -36,15 +36,17 @@ class App extends Component {
             <div className="PageSwitcher">
                 {
                   this.state.loggedIn
-                  ? <NavLink to="/" onClick={this.loggedOut} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Log Out</NavLink>
+                  ? <NavLink to="/sign-in" onClick={this.loggedOut} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Log Out</NavLink>
 
-                  : <><NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink> <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink></>
+                  : <><NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink> <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink></>
                 }
               </div>
 
               <Switch>
-              <Route exact path="/" component={SignUpForm}>
-              </Route>
+              <Route
+                path='/sign-up'
+                render={(props) => <SignUpForm{...props} loggedIn={this.loggedIn} />}
+              />
               <Route
                 path='/sign-in'
                 render={(props) => <SignInForm {...props} loggedIn={this.loggedIn} />}
