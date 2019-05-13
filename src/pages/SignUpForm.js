@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 class SignUpForm extends Component {
@@ -9,7 +9,9 @@ class SignUpForm extends Component {
         this.state = {
             email: '',
             password: '',
-            password_confirmation: ''
+            password_confirmation: '',
+            redirect: false,
+            loggedIn: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -31,7 +33,7 @@ class SignUpForm extends Component {
       console.log(JSON.stringify(this.state));
       const url = "https://quantified-self1811.herokuapp.com/api/v1/users";
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      if (this.state.password=== this.state.password_confirmation) {
+      if (this.state.password === this.state.password_confirmation) {
         fetch(proxyurl + url,
       {
           headers: {
@@ -44,7 +46,8 @@ class SignUpForm extends Component {
       .then(response => response.json())
       .then(result=> {
         if (result.success) {
-          console.log(result.success)
+          this.setState({redirect: true})
+          this.props.loggedIn()
         }else {
           alert(result.error)
         }
@@ -57,8 +60,12 @@ class SignUpForm extends Component {
     }
 
     render() {
-        return (
+      return(
         <div className="FormCenter">
+          {
+            this.state.redirect
+            ? <Redirect to= '/users' />
+            :
             <form onSubmit={this.handleSubmit} className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Full Name</label>
@@ -81,6 +88,7 @@ class SignUpForm extends Component {
                   <button className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">Im already member</Link>
               </div>
             </form>
+          }
           </div>
         );
     }

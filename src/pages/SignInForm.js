@@ -25,28 +25,32 @@ class SignInForm extends Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     const url = "https://quantified-self1811.herokuapp.com/api/v1/sessions";
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    fetch(proxyurl + url,
-    {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify(this.state)
-    })
-    .then(response => response.json())
-    .then(result => {
-      if (result.success) {
-        this.setState({redirect: true})
-        this.props.loggedIn()
+    if (this.state.email !== '' && this.state.password !== "") {
+      fetch(proxyurl + url,
+        {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify(this.state)
+        })
+        .then(response => response.json())
+        .then(result => {
+          if (result.success) {
+            this.setState({redirect: true})
+            this.props.loggedIn()
+          } else {
+            alert('Invalid Credentials')
+          }
+        })
       } else {
-        alert('Invalid Credentials')
+        alert("Please Enter Credentials")
       }
-    })
-    console.log(JSON.stringify(this.state));
-  }
+    }
 
   render() {
     return (
