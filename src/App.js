@@ -10,10 +10,18 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      email: ''
     }
     this.loggedIn = this.loggedIn.bind(this);
     this.loggedOut = this.loggedOut.bind(this);
+    this.setEmail = this.setEmail.bind(this);
+  }
+
+  setEmail(email){
+    this.setState({
+      email: email
+    })
   }
 
   loggedIn(){
@@ -49,7 +57,7 @@ class App extends Component {
               />
               <Route
                 path='/sign-in'
-                render={(props) => <SignInForm {...props} loggedIn={this.loggedIn} />}
+                render={(props) => <SignInForm {...props} setEmail={this.setEmail} loggedIn={this.loggedIn} />}
               />
 
               <Route
