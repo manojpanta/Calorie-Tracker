@@ -51,7 +51,6 @@ class SignInForm extends Component {
         alert("Please Enter Credentials")
       }
     }
-
   render() {
     return (
       <div className="FormCenter">

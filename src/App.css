@@ -10,7 +10,7 @@
 }
 
 .App__Form {
-  width: 50%;
+  width: 100%;
   background-color: #2E4158;
   padding: 25px 40px;
   overflow: auto;
@@ -139,4 +139,9 @@
   display: inline-block;
   padding-bottom: 2px;
   margin-left: 5px;
+}
+.recipe {
+  margin: 20px;
+  border: white solid;
+  padding: 20px;
 }
