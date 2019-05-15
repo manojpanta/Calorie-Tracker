@@ -47,7 +47,7 @@ class Users extends Component {
     return (
       <div className="FormCenter">
       <div className='WelcomeBanner'>
-        <h1> Welcome {this.props.email} </h1>
+        <h1> Welcome {this.state.email} </h1>
       </div>
       {
         this.state.hasSearched
