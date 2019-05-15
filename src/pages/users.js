@@ -126,26 +126,26 @@ class Users extends Component {
 
   render() {
     return (
-      <div className="FormCenter">
-      <div className='WelcomeBanner'>
-        <h1> Welcome {this.state.email} </h1>
-      </div>
+      <center><div className="FormCenter">
+        <div className='WelcomeBanner'>
+          <center><h1> Welcome {this.state.email} </h1></center>
+        </div>
       {
         this.state.hasSearched
         ? <Recipes recipes={this.state.recipes}/>
-        : <><input ref= 'textBox' type = 'text'/>
-        <button onClick= { (e)=> {this.randomRecipes("")} }>Get Recipes By Food Input</button>
+        : <><input className='input--field' ref= 'textBox' type = 'text'/>
+        <button className='input--button' onClick= { (e)=> {this.randomRecipes("")} }>Get Recipes By Food Input</button>
 <br/><br/>
-        <input ref= 'calorieCount' type = 'text'/>
-        <button onClick= { (e)=> {this.calorieRecipes("")} }>Get Recipes By Calorie Count Input</button>
+        <input className='input--field' ref= 'calorieCount' type = 'text'/>
+        <button className='input--button' onClick= { (e)=> {this.calorieRecipes("")} }>Get Recipes By Calorie Count Input</button>
 <br/><br/>
-        <input ref= 'cookTimeCount' type = 'text'/>
-        <button onClick= { (e)=> {this.timeRecipes("")} }>Get Recipes By Cook Time Input</button>
+        <input className='input--field' ref= 'cookTimeCount' type = 'text'/>
+        <button className='input--button' onClick= { (e)=> {this.timeRecipes("")} }>Get Recipes By Cook Time Input</button>
 <br/><br/>
-        <input ref= 'ingredientCount' type = 'text'/>
-        <button onClick= { (e)=> {this.ingredientsRecipes("")} }>Get Recipes By Ingredients Count Input</button></>
+        <input className='input--field' ref= 'ingredientCount' type = 'text'/>
+        <button className='input--button' onClick= { (e)=> {this.ingredientsRecipes("")} }>Get Recipes By Ingredients Count Input</button></>
       }
-      </div>
+      </div></center>
     );
   }
 }
