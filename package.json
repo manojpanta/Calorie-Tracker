@@ -1,10 +1,9 @@
 {
   "name": "calorie-tracker",
-  "version": "0.1.0",
+  "version": "10.15.3",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
-    "node": "10.15.3",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1"
