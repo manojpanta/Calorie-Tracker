@@ -9,6 +9,7 @@ class SignUpForm extends Component {
         this.state = {
             email: '',
             password: '',
+            name: '',
             password_confirmation: '',
             redirect: false,
             loggedIn: false
@@ -64,7 +65,7 @@ class SignUpForm extends Component {
         <div className="FormCenter">
           {
             this.state.redirect
-            ? <Redirect to={{pathname: '/users', email: this.state.email}}/>
+            ? <Redirect to={{pathname: '/users', email: this.state.name}}/>
             :
             <form onSubmit={this.handleSubmit} className="FormFields">
               <div className="FormField">

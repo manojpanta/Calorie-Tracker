@@ -56,7 +56,7 @@ class SignInForm extends Component {
       <div className="FormCenter">
       {
         this.state.redirect
-        ? <Redirect to={{pathname: '/users', email: this.state.email, password: this.state.password}}/>
+        ? <Redirect to={{pathname: '/users', email: this.state.email}}/>
         :
         <form onSubmit={this.handleSubmit} className="FormFields">
         <div className="FormField">
